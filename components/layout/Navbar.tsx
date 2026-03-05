@@ -1,4 +1,5 @@
 import ThemeToggleButton from "../ui/ThemeToggleButton";
+import Link from "next/link";
 
 export default function NavBar() {
     return (
@@ -20,11 +21,11 @@ export default function NavBar() {
                     {/* Navigation - With more precise spacing and typography */}
                     <div className="hidden md:flex items-center gap-8">
                         {[
-                            { name: "Overview", href: "#overview" },
-                            { name: "Projects", href: "#projects" },
-                            { name: "Contact", href: "#contact" }
+                            { name: "Home", href: "/" },
+                            { name: "Projects", href: "/projects" },
+                            { name: "Contact", href: "/contact" }
                         ].map((link) => (
-                            <a
+                            <Link
                                 key={link.name}
                                 href={link.href}
                                 className="group relative py-2 text-[13px] font-mono tracking-widest uppercase text-foreground/60 hover:text-foreground transition-colors"
@@ -32,7 +33,7 @@ export default function NavBar() {
                                 {link.name}
                                 {/* Precise Underline Indicator */}
                                 <span className="absolute bottom-0 left-0 w-0 h-[1px] bg-accent transition-all duration-300 group-hover:w-full" />
-                            </a>
+                            </Link>
                         ))}
                     </div>
 
