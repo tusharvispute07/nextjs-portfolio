@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function TechStack() {
     const techGroups = [
         {
@@ -20,6 +24,30 @@ export default function TechStack() {
         }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const cardVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring" as const,
+                stiffness: 70,
+                damping: 15
+            }
+        }
+    };
+
     return (
         <section className="py-24 bg-white dark:bg-[#1a1a1a] transition-colors duration-500">
             <div className="max-w-5xl mx-auto px-6">
@@ -33,10 +61,17 @@ export default function TechStack() {
                     </h2>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+                <motion.div
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-100px" }}
+                    variants={containerVariants}
+                    className="grid grid-cols-1 md:grid-cols-3 gap-5"
+                >
                     {techGroups.map((group) => (
-                        <div
+                        <motion.div
                             key={group.title}
+                            variants={cardVariants}
                             className={`
                                 group relative overflow-hidden p-[1px] rounded-[2rem]
                                 bg-gradient-to-b from-zinc-200 to-transparent dark:from-zinc-700/50 dark:to-transparent
@@ -74,9 +109,9 @@ export default function TechStack() {
 
                                 <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-accent/5 blur-[40px] rounded-full group-hover:bg-accent/10 transition-all duration-700" />
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

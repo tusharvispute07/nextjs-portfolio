@@ -1,17 +1,50 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Projects() {
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.1
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, y: 30 },
+        visible: {
+            opacity: 1,
+            y: 0,
+            transition: {
+                type: "spring" as const,
+                stiffness: 80,
+                damping: 15
+            }
+        }
+    };
+
     return (
         <main className="min-h-screen bg-white dark:bg-[#1a1a1a] text-zinc-900 dark:text-zinc-100 transition-colors">
 
             {/* Header / Hero Section */}
-            <section className="pt-32 pb-16 px-6 max-w-5xl mx-auto">
-                <nav className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500 mb-8">
+            <motion.section
+                className="pt-32 pb-16 px-6 max-w-5xl mx-auto"
+                initial="hidden"
+                animate="visible"
+                variants={containerVariants}
+            >
+                <motion.nav variants={itemVariants} className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500 mb-8">
                     <a href="/projects" className="hover:text-foreground transition-colors">Projects</a>
                     <span>/</span>
                     <span className="text-zinc-400">System Architecture</span>
-                </nav>
+                </motion.nav>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
-                    <div className="lg:col-span-8">
+                    <motion.div variants={itemVariants} className="lg:col-span-8">
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
                             Full-Stack <br />
                             <span className="text-zinc-400 dark:text-zinc-600">E-commerce App</span>
@@ -20,20 +53,25 @@ export default function Projects() {
                             A high-performance system designed to manage asynchronous workloads across
                             multiple clusters with a focus on fault tolerance and sub-second latency.
                         </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="lg:col-span-4 flex flex-wrap gap-2 pb-2">
+                    <motion.div variants={itemVariants} className="lg:col-span-4 flex flex-wrap gap-2 pb-2">
                         {['Node.js', 'Redis', 'Docker', 'PostgreSQL', 'AWS'].map((tech) => (
                             <span key={tech} className="px-3 py-1 text-[10px] font-mono border border-zinc-200 dark:border-zinc-800 rounded-full uppercase tracking-tighter">
                                 {tech}
                             </span>
                         ))}
-                    </div>
+                    </motion.div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* Main Visual - Following your "premium" aesthetic */}
-            <section className="px-6 max-w-6xl mx-auto mb-24">
+            <motion.section
+                className="px-6 max-w-6xl mx-auto mb-24"
+                initial={{ opacity: 0, scale: 0.95, y: 40 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, type: "spring" as const, stiffness: 60 }}
+            >
                 <div className="aspect-[16/9] rounded-[2rem] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 overflow-hidden relative group">
                     <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none"
                         style={{
@@ -61,10 +99,16 @@ export default function Projects() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
 
             {/* Details Section */}
-            <section className="px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 pb-32">
+            <motion.section
+                className="px-6 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 pb-32"
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.7, ease: "easeOut" as const }}
+            >
 
                 {/* Side Info */}
                 <div className="space-y-12">
@@ -120,7 +164,7 @@ export default function Projects() {
                         </div>
                     </div>
                 </div>
-            </section>
+            </motion.section>
         </main>
     );
 }

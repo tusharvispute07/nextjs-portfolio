@@ -1,14 +1,24 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function About() {
     return (
         <section
             id="overview"
-            className="py-24 w-full flex items-center"
+            className="py-24 w-full flex items-center overflow-hidden"
         >
             <div className="max-w-5xl mx-auto px-6">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
                     {/* Left Side: Content */}
-                    <div className="text-left">
+                    <motion.div
+                        initial={{ opacity: 0, x: -50 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.7, ease: "easeOut" }}
+                        className="text-left"
+                    >
                         <span className="text-accent font-mono text-[10px] tracking-[0.2em] uppercase mb-4 block">
                             Background
                         </span>
@@ -58,11 +68,16 @@ export default function About() {
                                 </p>
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                     {/* Right Side: Visual */}
-                    {/* Right Side: Visual */}
-                    <div className="relative group">
+                    <motion.div
+                        initial={{ opacity: 0, scale: 0.9, x: 50 }}
+                        whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.7, delay: 0.2, ease: "easeOut" }}
+                        className="relative group"
+                    >
                         {/* Removed p-1 and the bg-gradient classes here */}
                         <div className="aspect-square rounded-[3rem] overflow-hidden">
                             <div
@@ -105,7 +120,7 @@ export default function About() {
                                 />
                             </div>
                         </div>
-                    </div>
+                    </motion.div>
 
                 </div>
             </div>

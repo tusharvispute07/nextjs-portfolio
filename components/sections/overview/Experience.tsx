@@ -1,3 +1,7 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Experience() {
     const experiences = [
         {
@@ -16,6 +20,28 @@ export default function Experience() {
         }
     ];
 
+    const containerVariants = {
+        hidden: { opacity: 0 },
+        visible: {
+            opacity: 1,
+            transition: {
+                staggerChildren: 0.2
+            }
+        }
+    };
+
+    const itemVariants = {
+        hidden: { opacity: 0, x: -20 },
+        visible: {
+            opacity: 1,
+            x: 0,
+            transition: {
+                duration: 0.6,
+                ease: "easeOut" as const
+            }
+        }
+    };
+
     return (
         <section id="experience" className="py-24 bg-white dark:bg-[#1a1a1a]">
             <div className="max-w-5xl mx-auto px-6">
@@ -29,9 +55,19 @@ export default function Experience() {
                     </h2>
                 </div>
 
-                <div className="space-y-12">
+                <motion.div
+                    className="space-y-12"
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                    variants={containerVariants}
+                >
                     {experiences.map((exp, index) => (
-                        <div key={index} className="relative group">
+                        <motion.div
+                            key={index}
+                            variants={itemVariants}
+                            className="relative group"
+                        >
                             {/* Vertical Timeline Line */}
                             <div className="absolute left-0 top-0 h-full w-[1px] bg-zinc-200 dark:bg-zinc-800 group-last:h-0" />
 
@@ -71,9 +107,9 @@ export default function Experience() {
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </motion.div>
                     ))}
-                </div>
+                </motion.div>
             </div>
         </section>
     );

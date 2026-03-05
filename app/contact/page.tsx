@@ -1,10 +1,19 @@
+"use client";
+
+import { motion } from "framer-motion";
+
 export default function Contact() {
     return (
         <section className="min-h-screen py-24 bg-white dark:bg-[#1a1a1a] transition-colors duration-500">
             <div className="max-w-4xl mx-auto px-6">
 
                 {/* Heading */}
-                <div className="text-center mb-16">
+                <motion.div
+                    className="text-center mb-16"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.6, ease: "easeOut" as const }}
+                >
                     <span className="text-accent font-mono text-xs tracking-[0.3em] uppercase">
                         Contact
                     </span>
@@ -18,10 +27,15 @@ export default function Contact() {
                         Whether you have a project idea, collaboration opportunity, or just
                         want to say hello — I’d love to hear from you.
                     </p>
-                </div>
+                </motion.div>
 
                 {/* Contact Card */}
-                <div className="rounded-3xl p-8 md:p-12 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm">
+                <motion.div
+                    className="rounded-3xl p-8 md:p-12 bg-zinc-50 dark:bg-zinc-900/50 border border-zinc-200 dark:border-zinc-800 backdrop-blur-sm"
+                    initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    transition={{ duration: 0.6, delay: 0.2, type: "spring" as const, stiffness: 70 }}
+                >
 
                     <form className="space-y-8">
 
@@ -70,9 +84,9 @@ export default function Contact() {
                         </button>
 
                     </form>
-                </div>
+                </motion.div>
 
             </div>
-        </section>
+        </section >
     );
 }
