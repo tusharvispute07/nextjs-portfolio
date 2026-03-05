@@ -1,27 +1,36 @@
 @import "tailwindcss";
 
 /* =========================
-   Light Mode (Default)
+   Dark Variant
+========================= */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* =========================
+   Theme Variables
 ========================= */
 :root {
   --background: #ffffff;
-  --foreground: ##1a1a1a;
-
-  /* Brand Accent */
+  --foreground: #1a1a1a;
   --accent: #4FC3F7;
 }
 
+.dark {
+  --background: #1a1a1a;
+  --foreground: #ededed;
+}
+
+/* =========================
+   Animations
+========================= */
 @keyframes float {
-  0% {
-    transform: translateY(0px);
+
+  0%,
+  100% {
+    transform: translateY(0);
   }
 
   50% {
     transform: translateY(-8px);
-  }
-
-  100% {
-    transform: translateY(0px);
   }
 }
 
@@ -30,31 +39,20 @@
 }
 
 @keyframes gradientShift {
-  0% {
+
+  0%,
+  100% {
     background-position: 40% 50%;
   }
 
   50% {
     background-position: 60% 50%;
   }
-
-  100% {
-    background-position: 40% 50%;
-  }
 }
 
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradientShift 6s ease-in-out infinite;
-}
-
-/* =========================
-   Dark Mode (Manual Toggle)
-   Add class="dark" on <html>
-========================= */
-.dark {
-  --background: #1a1a1a;
-  --foreground: #ededed;
 }
 
 /* =========================
@@ -65,21 +63,22 @@
   --color-foreground: var(--foreground);
   --color-accent: var(--accent);
 
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-sans: var(--font-manrope);
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
 }
 
 /* =========================
    Base Styles
 ========================= */
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
 
-/* Smooth transitions between light/dark */
-* {
-  transition: background-color 0.2s ease, color 0.2s ease;
+/* Smooth but safe theme transition */
+html {
+  transition: background-color 0.25s ease, color 0.25s ease;
 }
