@@ -80,7 +80,7 @@ export default function Hero() {
                     >
                         Get in Touch
                     </Button>
-                    <a href="#work" className="text-sm font-semibold hover:text-accent transition-colors py-2 px-4">
+                    <a href="/projects" className="text-sm font-semibold hover:text-accent transition-colors py-2 px-4">
                         View Projects →
                     </a>
                 </motion.div>

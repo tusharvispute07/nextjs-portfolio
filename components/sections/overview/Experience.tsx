@@ -5,18 +5,20 @@ import { motion } from "framer-motion";
 export default function Experience() {
     const experiences = [
         {
-            company: "Perception And Quant",
-            role: "Software Engineer (Python)",
-            period: "2024 — Present",
-            description: "Architecting scalable microservices and optimizing database performance. Improved API response times by 40% through strategic caching and query optimization.",
-            stack: ["FastAPI", "PostgreSQL", "Redis", "Docker"]
+            company: "Perception & Quant",
+            role: "Python Developer",
+            period: "Feb 2024 — Present",
+            description:
+                "Led the migration of legacy systems from Oracle to MongoDB and built high-performance FastAPI services powering a large-scale news platform. Developed a fault-tolerant background job server for automating workflows, reducing manual operations by 60%. Integrated AI-powered content intelligence for entity extraction, sentiment analysis, and assisted tagging.",
+            stack: ["Python", "FastAPI", "MongoDB", "Next.js", "Redis", "Docker", "OpenAI API"]
         },
         {
             company: "AI Variant",
-            role: "Data Scince Intern",
-            period: "2023 — 2024",
-            description: "Developed and maintained responsive frontend components while integrating complex RESTful APIs. Streamlined CI/CD pipelines to reduce deployment friction.",
-            stack: ["Next.js", "Node.js", "MongoDB", "AWS"]
+            role: "Data Science Intern",
+            period: "Feb 2022 — Aug 2022",
+            description:
+                "Built machine learning and NLP models for text classification and predictive analysis using Scikit-learn, TensorFlow, and Keras. Performed large-scale data mining and analysis to generate insights and improve model accuracy for business use cases.",
+            stack: ["Python", "Scikit-learn", "TensorFlow", "Keras", "NLP"]
         }
     ];
 
