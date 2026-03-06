@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function Projects() {
     const containerVariants = {
@@ -40,23 +41,22 @@ export default function Projects() {
                 <motion.nav variants={itemVariants} className="flex items-center gap-2 text-xs font-mono uppercase tracking-widest text-zinc-500 mb-8">
                     <a href="/projects" className="hover:text-foreground transition-colors">Projects</a>
                     <span>/</span>
-                    <span className="text-zinc-400">System Architecture</span>
+                    <span className="text-zinc-400">E-Commerce & CMS</span>
                 </motion.nav>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-end">
                     <motion.div variants={itemVariants} className="lg:col-span-8">
                         <h1 className="text-4xl md:text-6xl font-bold tracking-tighter mb-6">
-                            Full-Stack <br />
-                            <span className="text-zinc-400 dark:text-zinc-600">E-commerce App</span>
+                            E-Commerce Store <br />
+                            <span className="text-zinc-400 dark:text-zinc-600">& CMS Dashboard</span>
                         </h1>
                         <p className="text-lg md:text-xl text-zinc-600 dark:text-zinc-400 leading-relaxed max-w-2xl">
-                            A high-performance system designed to manage asynchronous workloads across
-                            multiple clusters with a focus on fault tolerance and sub-second latency.
+                            I built an e-commerce store and its content management system using Next.js, MongoDB, OAuth 2.0, with Stripe integration.
                         </p>
                     </motion.div>
 
                     <motion.div variants={itemVariants} className="lg:col-span-4 flex flex-wrap gap-2 pb-2">
-                        {['Node.js', 'Redis', 'Docker', 'PostgreSQL', 'AWS'].map((tech) => (
+                        {['Next.js', 'MongoDB', 'OAuth 2.0', 'Stripe', 'AWS S3'].map((tech) => (
                             <span key={tech} className="px-3 py-1 text-[10px] font-mono border border-zinc-200 dark:border-zinc-800 rounded-full uppercase tracking-tighter">
                                 {tech}
                             </span>
@@ -65,37 +65,47 @@ export default function Projects() {
                 </div>
             </motion.section>
 
-            {/* Main Visual - Following your "premium" aesthetic */}
+            {/* Main Visual - Dual Device Layout */}
             <motion.section
                 className="px-6 max-w-6xl mx-auto mb-24"
                 initial={{ opacity: 0, scale: 0.95, y: 40 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3, type: "spring" as const, stiffness: 60 }}
             >
-                <div className="aspect-[16/9] rounded-[2rem] bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 overflow-hidden relative group">
+                <div className="aspect-[16/9] md:aspect-21/9 rounded-4xl bg-zinc-100 dark:bg-zinc-800/30 border border-zinc-200 dark:border-zinc-800 overflow-hidden relative group">
                     <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.07] pointer-events-none"
                         style={{
                             backgroundImage: "radial-gradient(circle, currentColor 1px, transparent 1px)",
                             backgroundSize: "32px 32px",
                         }}
                     />
-                    <div className="w-full h-full flex items-center justify-center p-12">
-                        {/* Replace with your Project UI/Dashboard Screenshot */}
-                        <div className="w-full h-full bg-zinc-200 dark:bg-zinc-900 rounded-xl shadow-2xl overflow-hidden border border-zinc-300 dark:border-zinc-700">
-                            <div className="h-6 w-full bg-zinc-300 dark:bg-zinc-800 flex items-center px-3 gap-1.5">
-                                <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-                                <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-                                <div className="w-2 h-2 rounded-full bg-zinc-400 dark:bg-zinc-600"></div>
-                            </div>
-                            <div className="p-8 space-y-4">
-                                <div className="h-4 w-1/3 bg-zinc-300 dark:bg-zinc-800 rounded"></div>
-                                <div className="h-32 w-full bg-zinc-300/50 dark:bg-zinc-800/50 rounded"></div>
-                                <div className="grid grid-cols-3 gap-4">
-                                    <div className="h-20 bg-zinc-300/50 dark:bg-zinc-800/50 rounded"></div>
-                                    <div className="h-20 bg-zinc-300/50 dark:bg-zinc-800/50 rounded"></div>
-                                    <div className="h-20 bg-zinc-300/50 dark:bg-zinc-800/50 rounded"></div>
-                                </div>
-                            </div>
+
+                    <div className="absolute inset-0 flex items-center justify-center p-6 md:p-12">
+                        {/* Desktop View (Background) */}
+                        <div className="relative w-[85%] md:w-[70%] lg:w-[60%] aspect-16/10 bg-zinc-200/90 dark:bg-zinc-900/90 backdrop-blur-sm rounded-xl shadow-2xl overflow-hidden border border-zinc-300 dark:border-zinc-700 transform md:-translate-x-12 lg:-translate-x-16 -translate-y-4 md:translate-y-0 transition-transform duration-500 group-hover:-translate-y-2">
+                            <Image
+                                src="/images/projects/ecommerce-desktop.png"
+                                alt="E-Commerce Store Desktop View"
+                                fill
+                                className="object-cover object-top"
+                                sizes="(max-width: 768px) 85vw, (max-width: 1024px) 70vw, 60vw"
+                                priority
+                            />
+                        </div>
+
+                        {/* Mobile View (Foreground) */}
+                        <div className="absolute right-[5%] md:right-[15%] lg:right-[20%] top-[25%] md:top-[15%] w-[30%] md:w-[22%] lg:w-[18%] aspect-9/19 bg-zinc-100 dark:bg-black rounded-[2rem] shadow-2xl overflow-hidden border-[6px] border-zinc-300 dark:border-zinc-800 transform translate-y-8 md:translate-y-0 transition-transform duration-500 group-hover:-translate-y-4">
+                            {/* Mobile Notch */}
+                            <div className="absolute top-0 left-1/2 -translate-x-1/2 w-1/3 h-4 bg-zinc-300 dark:bg-zinc-800 rounded-b-xl z-20"></div>
+
+                            <Image
+                                src="/images/projects/ecommerce-mobile.png"
+                                alt="E-Commerce Store Mobile View"
+                                fill
+                                className="object-cover object-top z-10"
+                                sizes="(max-width: 768px) 30vw, (max-width: 1024px) 22vw, 18vw"
+                                priority
+                            />
                         </div>
                     </div>
                 </div>
@@ -114,18 +124,19 @@ export default function Projects() {
                 <div className="space-y-12">
                     <div>
                         <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-400 mb-4">Role</h4>
-                        <p className="text-lg font-medium">Lead Backend Engineer</p>
+                        <p className="text-lg font-medium">Full-Stack Developer</p>
                     </div>
                     <div>
-                        <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-400 mb-4">Metrics</h4>
+                        <h4 className="text-xs font-mono uppercase tracking-[0.2em] text-zinc-400 mb-4">Core Features</h4>
                         <ul className="space-y-2 text-zinc-600 dark:text-zinc-400">
-                            <li>• 99.98% System Uptime</li>
-                            <li>• 250ms Avg. Latency</li>
-                            <li>• 10k+ Concurrent Tasks</li>
+                            <li>• Products Catalogue & Search</li>
+                            <li>• User Authentication</li>
+                            <li>• Order Management</li>
+                            <li>• Secure Checkout</li>
                         </ul>
                     </div>
                     <div className="pt-8 border-t border-zinc-100 dark:border-zinc-800">
-                        <a href="#" className="inline-flex items-center gap-2 text-sm font-bold hover:gap-4 transition-all group">
+                        <a href="https://bellavue-store.vercel.app/" className="inline-flex items-center gap-2 text-sm font-bold hover:gap-4 transition-all group">
                             VIEW LIVE SITE
                             <span className="text-xl group-hover:translate-x-1 transition-transform">→</span>
                         </a>
@@ -135,32 +146,27 @@ export default function Projects() {
                 {/* Main Narrative */}
                 <div className="md:col-span-2 space-y-12">
                     <div>
-                        <h3 className="text-2xl font-bold mb-4 tracking-tight">The Challenge</h3>
+                        <h3 className="text-2xl font-bold mb-4 tracking-tight">E-Commerce Store</h3>
                         <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                            Most existing solutions struggled with state persistence during sudden node failures.
-                            The requirement was to build a system that could guarantee task delivery without
-                            sacrificing the speed of an in-memory database.
+                            The customer-facing application provides a seamless shopping experience with functionalities including a complete products catalogue, order management, user wishlists, product reviews, and secure payment integration via Stripe.
                         </p>
                     </div>
 
                     <div>
-                        <h3 className="text-2xl font-bold mb-4 tracking-tight">The "Unseen Architecture"</h3>
+                        <h3 className="text-2xl font-bold mb-4 tracking-tight">Content Management System</h3>
                         <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed text-lg">
-                            By implementing a custom WAL (Write-Ahead Logging) strategy combined with
-                            Redis Streams, we created a redundant processing layer. This ensured that even
-                            if a worker crashed mid-task, the system would auto-recover and redistribute
-                            the load within 50ms.
+                            A dedicated admin dashboard designed to manage the store operations efficiently. It features tools for inventory management, updating featured products on the storefront, tracking orders, and handling overall content updates. All product imagery and media are securely managed and served via AWS S3.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-2 gap-8">
                         <div className="p-8 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                            <span className="text-zinc-400 font-mono text-xs uppercase block mb-2">Security</span>
-                            <p className="font-medium">End-to-end encrypted data pipelines.</p>
+                            <span className="text-zinc-400 font-mono text-xs uppercase block mb-2">Payments</span>
+                            <p className="font-medium">Secure transactions powered by Stripe integration.</p>
                         </div>
                         <div className="p-8 bg-zinc-50 dark:bg-zinc-900/50 rounded-2xl border border-zinc-100 dark:border-zinc-800">
-                            <span className="text-zinc-400 font-mono text-xs uppercase block mb-2">Scalability</span>
-                            <p className="font-medium">Horizontal autoscaling via Kubernetes.</p>
+                            <span className="text-zinc-400 font-mono text-xs uppercase block mb-2">Authentication</span>
+                            <p className="font-medium">Robust user access control with OAuth 2.0.</p>
                         </div>
                     </div>
                 </div>
