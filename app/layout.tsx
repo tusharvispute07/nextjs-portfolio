@@ -30,6 +30,7 @@ export default function RootLayout({
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/theme-toggles@4.10.1/css/around.min.css"
         />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="antialiased bg-background text-foreground">
         <ThemeProvider>
